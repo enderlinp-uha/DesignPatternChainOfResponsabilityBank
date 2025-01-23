@@ -1,18 +1,12 @@
 public class User {
-    private String name = "";
-    private String ipAddress = "";
+    private String ipAddress  = "";
     private double dailyLimit = 0.0;
-    private double balance = 0.0;
+    private double balance    = 0.0;
 
-    public User(String name, double balance, double dailyLimit, String ipAddress) {
-        this.name = name;
-        this.ipAddress = ipAddress;
+    public User(double balance, double dailyLimit, String ipAddress) {
+        this.ipAddress  = ipAddress;
         this.dailyLimit = dailyLimit;
-        this.balance = balance;
-    }
-
-    public String getName() {
-        return name;
+        this.balance    = balance;
     }
 
     public String getIpAddress() {
@@ -29,6 +23,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [name=" + name + ", ipAddress=" + ipAddress + ", balance=" + balance + ", dailyLimit=" + dailyLimit + "]";
+        return "User [ipAddress=" + ipAddress + ", dailyLimit=" + dailyLimit + ", balance=" + balance + "]";
     }
 }
