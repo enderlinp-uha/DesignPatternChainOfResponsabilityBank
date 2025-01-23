@@ -1,15 +1,18 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        IValidationService balance = new BalanceValidation();
+        IValidationService dailyLimit = new DailyLimitValidation();
+        IValidationService security = new SecurityValidation();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        balance.setNext(dailyLimit);
+        dailyLimit.setNext(security);
+
+        ValidationRequest requestA = new ValidationRequest(EValidationType.BALANCE, "1000");
+        ValidationRequest requestB = new ValidationRequest(EValidationType.DAILY_LIMIT, "100");
+        ValidationRequest requestC = new ValidationRequest(EValidationType.SECURITY, "10.10.10.10");
+
+        System.out.println(requestA.getConclusion());
+        System.out.println(requestB.getConclusion());
+        System.out.println(requestC.getConclusion());
     }
 }
